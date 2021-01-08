@@ -8,9 +8,158 @@
 </head>
 
 <body>
-    <h2>test only part 2</h2>
-    <img src="./img/jollibeefood.jpg">
+    <div class="nav">Todo list</div>
+    <div class="dim_screen_container hide">
+        <!-- add project form -->
+        <div class="add_project_form_container parent_wrapper hide">
+            <form class="add_project_form">
+                <div class="add_project_name_wrapper">
+                    <label for="project_name">Project Name</label>
+                    <input type="text" name="project_name" class="project_name_input" maxlength="15" placeholder="Enter project name">
+                </div>
+                <div class="buttons_wrapper">
+                    <div class="add_project_form_button btn add_edit_buttons">Add</div>
+                    <div class="close_add_project_button btn close_buttons">Close</div>
+                </div>
+            </form>
+        </div>
+        <!-- add new task form -->
+        <div class="add_todo_form_container parent_wrapper hide">
+            <form class="add_todo_form">
+                <h2>Add task</h2>
+                <div class="edit_name_wrapper add_data_wrapper">
+                    <label for="todo_name">Task Name</label>
+                    <input type="text" name="todo_name" class="todo_name" placeholder="Enter task name">
+                </div>
+                <div class="edit_description_wrapper add_data_wrapper">
+                    <label for="todo_description">Description</label>
+                    <input type="text" name="todo_description" class="todo_description"
+                        placeholder="Enter task description">
+                </div>
+                <div class="edit_date_wrapper add_data_wrapper">
+                    <label for="todo_date">Due Date</label>
+                    <input type="date" name="todo_date" class="todo_date" placeholder="Enter due date">
+                </div>
+                <div class="edit_priority_wrapper add_data_wrapper">
+                    <p>Set priority:</p>
+                    <div>
+                        <label for="priority1">1</label>
+                        <input type="radio" name="priority" value="1" class="priority todo_priority1">
+                        <label for="priority2">2</label>
+                        <input type="radio" name="priority" value="2" class="priority todo_priority2">
+                        <label for="priority3">3</label>
+                        <input type="radio" name="priority" value="3" class="priority todo_priority3">
+                        <label for="priority4">4</label>
+                        <input type="radio" name="priority" value="4" class="priority todo_priority4">
+                    </div>
+                </div>
+                <div class="buttons_wrapper">
+                    <div class="add_todo_form_button btn add_edit_buttons">Add</div>
+                    <div class="close_add_todo_button btn close_buttons">Close</div>
+                </div>
+            </form>
+        </div>
+        <!-- edit task form -->
+        <div class="edit_task_wrapper parent_wrapper hide">
+            <form class="edit_task">
+                <h2>Edit task</h2>
+                <div class="add_todo_name_wrapper add_data_wrapper">
+                    <label for="todo_name">Task Name</label>
+                    <input type="text" name="todo_name" class="edit_name" placeholder="Enter task name">
+                </div>
+                <div class="add_todo_description_wrapper add_data_wrapper">
+                    <label for="todo_description">Description</label>
+                    <input type="text" name="todo_description" class="edit_description"
+                        placeholder="Enter task description">
+                </div>
+                <div class="add_todo_date_wrapper add_data_wrapper">
+                    <label for="todo_date">Due Date</label>
+                    <input type="date" name="todo_date" class="edit_date" placeholder="Enter due date">
+                </div>
+                <div class="add_todo_priority_wrapper add_data_wrapper">
+                    <p>Set priority:</p>
+                    <div>
+                        <label for="priority1">1</label>
+                        <input type="radio" name="priority" value="1" class="priority edit_priority1">
+                        <label for="priority2">2</label>
+                        <input type="radio" name="priority" value="2" class="priority edit_priority2">
+                        <label for="priority3">3</label>
+                        <input type="radio" name="priority" value="3" class="priority edit_priority3">
+                        <label for="priority4">4</label>
+                        <input type="radio" name="priority" value="4" class="priority edit_priority4">
+                    </div>
+                </div>
+                <div class="buttons_wrapper">
+                    <div class="edit_task_button btn add_edit_buttons">Edit</div>
+                    <div class="close_edit_task_button btn close_buttons">Close</div>
+                </div>
 
+
+            </form>
+        </div>
+        <!-- see task -->
+        <div class="see_task_wrapper parent_wrapper hide">
+            <div class="task_details">
+                <p class="task_details_label see_project">Project: Sample<p>
+                <strong class="see_name">Sample name</strong>
+                <p class="see_description">Sample description</p>
+                <div class="see_date_wrapper">
+                    <p>due on</p>
+                    <p class="see_date" style="margin-left: 5px;">January 1, 2021
+                    <p></p>
+                </div>
+                <div class="see_priority_wrapper">
+                    <p>Priority:</p>
+                    <p class="see_priority" style="margin-left: 5px;">1
+                    <p></p>
+                </div>
+                <div class="buttons_wrapper">
+                    <div class="see_task_edit_button btn add_edit_buttons">Edit</div>
+                    <div class="see_task_close_button btn close_buttons">Close</div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+    <main>
+        <div id="projects_container">
+            <div class="add_projects_wrapper">
+                <p class="add_projects_label"><b>Projects</b></p>
+                <div class="add_projects_button btn">+</div>
+            </div>
+            <div class="all_project_items_wrapper">
+
+            </div>
+        </div>
+        <div id="todo_container" class="parent_wrapper">
+            <!-- <div class="add_todo_wrapper">
+                <p class="add_todo_label"><b>Study</b></p>
+                <div class="add_todo_buttons_wrapper">
+                    <div class="add_todo_button btn">+new task</div>
+                    <div class="add_todo_delete_button btn">-</div>
+                </div>
+            </div> -->
+            <!-- <div class="todo_item_wrapper">
+                <div class="todo_item_wrapper2">
+                    <div class="todo_item_wrapper3">
+                        <div class="todo_item_complete_button btn">
+                            <img src="https://s.svgbox.net/hero-outline.svg?ic=badge-check&fill=000" width="24"
+                                height="24">
+                        </div>
+                        <p class="todo_item_label">Read about classes</p>
+                    </div>
+                    <p class="todo_item_date">Jan. 1</p>
+                </div>
+                <div class="todo_item_edit_button btn">
+                    <img src="https://s.svgbox.net/hero-outline.svg?ic=dots-horizontal&fill=000" width="32" height="32">
+                </div>
+            </div> -->
+        </div>
+    </main>
+   
 
     <script src="main.js"></script>
 </body>
