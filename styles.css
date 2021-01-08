@@ -241,7 +241,7 @@ main {
 /* project form css*/
 .dim_screen_container {
     background-color: rgba(0, 0, 0, .8);
-    position: absolute;
+    position: fixed;
     width: 1366px;
     min-height: 100%;
     max-height: auto;
