@@ -48,10 +48,11 @@ const methods = (function () {
         // const projectid = document.querySelector('.edit_task_wrapper').getAttribute('data-id');
         const projectid = e.target.closest('.parent_wrapper').getAttribute('data-id');
         const taskid = document.querySelector('.edit_task_wrapper').getAttribute('data-taskid');
-        data.projects[projectid].tasks[taskid].title = document.querySelector('.edit_name').value;
-        data.projects[projectid].tasks[taskid].description = document.querySelector('.edit_description').value;
-        data.projects[projectid].tasks[taskid].date = document.querySelector('.edit_date').value;
 
+
+        const task_name = document.querySelector('.edit_name').value;
+        const task_description = document.querySelector('.edit_description').value;
+        const task_date = document.querySelector('.edit_date').value;
         let edited_priority = '';
 
         if (document.querySelector('.edit_priority1').checked)
@@ -63,14 +64,16 @@ const methods = (function () {
         else if (document.querySelector('.edit_priority4').checked)
             edited_priority = '4';
 
-        data.projects[projectid].tasks[taskid].priority = edited_priority;
+        if (task_name == '' || task_description == '' || task_date == '' || edited_priority == '')
+            return;
+
+        data.projects[projectid].tasks[taskid]._priority = edited_priority;
+        data.projects[projectid].tasks[taskid]._title = task_name
+        data.projects[projectid].tasks[taskid]._description = task_description
+        data.projects[projectid].tasks[taskid]._date = task_date
 
 
-        display.removeTasks();
-        display.displayTodoProjectName(projectid);
-        display.displayAllTask(projectid);
-        document.querySelector('.edit_task_wrapper').classList.add('hide');
-        document.querySelector('.dim_screen_container').classList.add('hide');
+        
 
     }
 
@@ -95,6 +98,24 @@ const methods = (function () {
     }
 
 
+    //*****methods below for storage*****
+
+    // this method sets/updates the projects array to local storage
+    function updateStorage() {
+        localStorage.setItem('projects', JSON.stringify(data.projects));
+        console.log('projects stored in localStorage');
+    }
+
+    // this method retrieves the projects array from storage
+    function getStorage() {
+        data.projects = JSON.parse(localStorage.getItem('projects'));
+    }
+
+    function emptyStorage() {
+        localStorage.clear();
+        console.log('storage cleared');
+    }
+
 
 
     return {
@@ -103,6 +124,9 @@ const methods = (function () {
         updateProjectId,
         deleteTask,
         editTask,
+        updateStorage,
+        getStorage,
+        emptyStorage,
     }
 })();
 

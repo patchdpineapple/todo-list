@@ -65,8 +65,6 @@ class task {
 
 const data = (function (){
 
-    
-    
 
     //all projects array
     let projects = [

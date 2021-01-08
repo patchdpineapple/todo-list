@@ -21,7 +21,7 @@ const display = (function () {
 
             const projects_item_label = document.createElement('p');
             projects_item_label.classList.add('projects_item_label');
-            projects_item_label.textContent = data.projects[i].name;
+            projects_item_label.textContent = data.projects[i]._name;
             projects_item_label.addEventListener('click', (e) => {
                 removeTasks();
                 displayTodoProjectName(e.target.closest('.parent_wrapper').getAttribute('data-id'));
@@ -56,6 +56,8 @@ const display = (function () {
                     displayTodoProjectName(newcontainerid);
                     displayAllTask(newcontainerid);
                 }
+
+                methods.updateStorage();
             });
 
             //combine all to wrapper
@@ -92,7 +94,7 @@ const display = (function () {
         add_todo_label.classList.add('add_todo_label');
         const boldlabel = document.createElement('strong');
         // boldlabel.textContent = data.projects[todo_container.getAttribute('data-id')].name;
-        boldlabel.textContent = data.projects[projectid].name;
+        boldlabel.textContent = data.projects[projectid]._name;
 
         add_todo_label.append(boldlabel);
         add_todo_wrapper.append(add_todo_label);
@@ -120,6 +122,7 @@ const display = (function () {
             document.querySelector(`.projects_item_wrapper[data-id="${projectid}"]`).remove();
             deleteProject(projectid);
             displayDefault();
+            methods.updateStorage();
         });
 
         add_todo_buttons_wrapper.append(add_todo_button);
@@ -190,10 +193,10 @@ const display = (function () {
             image2.setAttribute('width', '32');
             image2.setAttribute('height', '32');
 
-            todo_item_label.textContent = data.projects[projectid].tasks[i].title;
-            todo_item_date.textContent = data.projects[projectid].tasks[i].date;
+            todo_item_label.textContent = data.projects[projectid].tasks[i]._title;
+            todo_item_date.textContent = data.projects[projectid].tasks[i]._date;
 
-            switch (data.projects[projectid].tasks[i].priority) {
+            switch (data.projects[projectid].tasks[i]._priority) {
                 case '1':
                     todo_item_wrapper.setAttribute('style', 'background-color: hsla(0, 100%, 50%, 0.7);');
                     break;
@@ -227,10 +230,19 @@ const display = (function () {
                 methods.deleteTask(projectid, taskid);
                 e.target.closest('.todo_item_wrapper').remove();
                 // document.querySelector(`.todo_item_wrapper[data-id="${taskid}"]`).remove();
-                // document.querySelector(`.todo_item_wrapper[data-wrapperid="0"]`).remove();
-                removeTasks();
-                displayTodoProjectName(projectid);
-                displayAllTask(projectid);
+                
+
+                if (document.getElementById('todo_container').getAttribute('data-id') == 'all') {
+                    removeTasks();
+                    displayDefault();
+                } else {
+                    console.log('not all');
+                    removeTasks();
+                    displayTodoProjectName(projectid);
+                    displayAllTask(projectid);
+                }
+
+                methods.updateStorage();
             });
 
             todo_item_label.addEventListener('click', (e) => {
@@ -239,11 +251,11 @@ const display = (function () {
 
                 document.querySelector('.dim_screen_container').classList.remove('hide');
                 document.querySelector('.see_task_wrapper').classList.remove('hide');
-                document.querySelector('.see_project').textContent = `Project: ${data.projects[projectid].name}`;
-                document.querySelector('.see_name').textContent = data.projects[projectid].tasks[taskid].title;
-                document.querySelector('.see_description').textContent = data.projects[projectid].tasks[taskid].description;
-                document.querySelector('.see_date').textContent = data.projects[projectid].tasks[taskid].date;
-                document.querySelector('.see_priority').textContent = data.projects[projectid].tasks[taskid].priority;
+                document.querySelector('.see_project').textContent = `Project: ${data.projects[projectid]._name}`;
+                document.querySelector('.see_name').textContent = data.projects[projectid].tasks[taskid]._title;
+                document.querySelector('.see_description').textContent = data.projects[projectid].tasks[taskid]._description;
+                document.querySelector('.see_date').textContent = data.projects[projectid].tasks[taskid]._date;
+                document.querySelector('.see_priority').textContent = data.projects[projectid].tasks[taskid]._priority;
 
                 document.querySelector('.see_task_wrapper').setAttribute('data-id', projectid);
                 document.querySelector('.see_task_wrapper').setAttribute('data-taskid', taskid);

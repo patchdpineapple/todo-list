@@ -7,3 +7,4 @@ Learnings:
 HTML
 CSS
 JS
+    use e.stopPropagation() to prevent event bubbling
