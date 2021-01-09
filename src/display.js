@@ -1,6 +1,6 @@
 import { data } from './data.js';
 import { methods } from './methods.js';
-import { eventhandler } from './eventhandler.js';
+import { format } from 'date-fns';
 
 const display = (function () {
 
@@ -194,7 +194,8 @@ const display = (function () {
             image2.setAttribute('height', '32');
 
             todo_item_label.textContent = data.projects[projectid].tasks[i]._title;
-            todo_item_date.textContent = data.projects[projectid].tasks[i]._date;
+            todo_item_date.textContent = format(new Date(data.projects[projectid].tasks[i]._date), 'MMMM dd, yyyy');
+
 
             switch (data.projects[projectid].tasks[i]._priority) {
                 case '1':
@@ -230,7 +231,7 @@ const display = (function () {
                 methods.deleteTask(projectid, taskid);
                 e.target.closest('.todo_item_wrapper').remove();
                 // document.querySelector(`.todo_item_wrapper[data-id="${taskid}"]`).remove();
-                
+
 
                 if (document.getElementById('todo_container').getAttribute('data-id') == 'all') {
                     removeTasks();
@@ -254,7 +255,8 @@ const display = (function () {
                 document.querySelector('.see_project').textContent = `Project: ${data.projects[projectid]._name}`;
                 document.querySelector('.see_name').textContent = data.projects[projectid].tasks[taskid]._title;
                 document.querySelector('.see_description').textContent = data.projects[projectid].tasks[taskid]._description;
-                document.querySelector('.see_date').textContent = data.projects[projectid].tasks[taskid]._date;
+                document.querySelector('.see_date').textContent = format(new Date(data.projects[projectid].tasks[taskid]._date), 'MMMM dd, yyyy');
+
                 document.querySelector('.see_priority').textContent = data.projects[projectid].tasks[taskid]._priority;
 
                 document.querySelector('.see_task_wrapper').setAttribute('data-id', projectid);
@@ -267,6 +269,13 @@ const display = (function () {
                 const taskid = e.target.closest('.todo_item_wrapper').getAttribute('data-taskid');
 
                 document.querySelector('.edit_task').reset();
+                document.querySelector('.edit_name').value = data.projects[projectid].tasks[taskid]._title;
+                document.querySelector('.edit_description').value = data.projects[projectid].tasks[taskid]._description;
+                document.querySelector('.edit_date').value = data.projects[projectid].tasks[taskid]._date;
+
+                const task_priority = data.projects[projectid].tasks[taskid]._priority;
+                console.log(task_priority);
+
                 document.querySelector('.dim_screen_container').classList.remove('hide');
                 document.querySelector('.edit_task_wrapper').classList.remove('hide');
                 document.querySelector('.edit_task_wrapper').setAttribute('data-id', projectid);

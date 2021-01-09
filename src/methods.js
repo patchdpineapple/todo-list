@@ -1,7 +1,7 @@
 import { data, project, task } from './data.js';
+import { format } from 'date-fns';
 import { display } from './display.js';
 
-// import { project } from './data.js';
 
 
 const methods = (function () {
@@ -72,8 +72,6 @@ const methods = (function () {
         data.projects[projectid].tasks[taskid]._description = task_description
         data.projects[projectid].tasks[taskid]._date = task_date
 
-
-        
 
     }
 

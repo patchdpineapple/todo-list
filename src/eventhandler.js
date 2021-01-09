@@ -1,6 +1,6 @@
 import { methods } from './methods.js';
 import { display } from './display.js';
-import { data } from './data.js';
+
 
 const eventhandler = (function () {
 
@@ -72,6 +72,7 @@ const eventhandler = (function () {
                 display.displayTodoProjectName(projectid);
                 display.displayAllTask(projectid);
             }
+            // document.querySelector('.edit_task').reset();
             document.querySelector('.edit_task_wrapper').classList.add('hide');
             document.querySelector('.dim_screen_container').classList.add('hide');
             methods.updateStorage();
@@ -84,6 +85,13 @@ const eventhandler = (function () {
             const taskid = document.querySelector('.see_task_wrapper').getAttribute('data-taskid');
 
             document.querySelector('.edit_task').reset();
+            document.querySelector('.edit_name').value = data.projects[projectid].tasks[taskid]._title;
+            document.querySelector('.edit_description').value = data.projects[projectid].tasks[taskid]._description;
+            document.querySelector('.edit_date').value = data.projects[projectid].tasks[taskid]._date;
+
+            const task_priority = data.projects[projectid].tasks[taskid]._priority;
+            console.log(task_priority);
+
             document.querySelector('.see_task_wrapper').classList.add('hide');
             document.querySelector('.edit_task_wrapper').classList.remove('hide');
             document.querySelector('.edit_task_wrapper').setAttribute('data-id', projectid);

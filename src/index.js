@@ -4,9 +4,6 @@ import { display } from './display.js';
 import { methods } from './methods.js';
 
 
-
-
-
 // if storage is empty, populate the storage with the projects array 
 if (!JSON.parse(localStorage.getItem('projects'))) {
     console.log('storage empty');
@@ -22,4 +19,6 @@ eventhandler.initializeEvents();
 display.removeTasks();
 display.displayProjects();
 display.displayDefault();
+
+
 
