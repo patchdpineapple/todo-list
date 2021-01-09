@@ -276,6 +276,21 @@ const display = (function () {
                 const task_priority = data.projects[projectid].tasks[taskid]._priority;
                 console.log(task_priority);
 
+                switch (task_priority) {
+                    case '1':
+                        document.edit_form.priority[0].checked = true;
+                        break;
+                    case '2':
+                        document.edit_form.priority[1].checked = true;
+                        break;
+                    case '3':
+                        document.edit_form.priority[2].checked = true;
+                        break;
+                    case '4':
+                        document.edit_form.priority[3].checked = true;
+                        break;
+                }
+
                 document.querySelector('.dim_screen_container').classList.remove('hide');
                 document.querySelector('.edit_task_wrapper').classList.remove('hide');
                 document.querySelector('.edit_task_wrapper').setAttribute('data-id', projectid);
